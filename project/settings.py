@@ -26,7 +26,7 @@ SECRET_KEY = '+(n6fh!1)stswx$=p)q+6_-z&hy#b_dxwp(530icb9+i33%mnh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['infinite-crag-60148.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
