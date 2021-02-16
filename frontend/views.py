@@ -7,7 +7,7 @@ import requests
 
 class ProjectCreate(View):
     def post(self, request):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/create"
         payload = {
             "name": request.POST['name']
@@ -20,7 +20,7 @@ class ProjectUpdate(View):
     template = 'frontend/project_form.html'
 
     def get_object(self, project_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}"
         response = requests.get(api_url).json()
         return response
@@ -33,7 +33,7 @@ class ProjectUpdate(View):
         return render(request, self.template, context)
 
     def post(self, request, project_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}"
         payload = {
             "id": project_id,
@@ -52,7 +52,7 @@ class ProjectList(View):
     template = 'frontend/project_list.html'
 
     def get(self, request):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + "api/project"
         response = requests.get(api_url).json()
         context = {
@@ -65,7 +65,7 @@ class ProjectDetail(View):
     template = 'frontend/project.html'
 
     def get_object(self, project_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}"
         response = requests.get(api_url).json()
         return response
@@ -80,7 +80,7 @@ class ProjectDetail(View):
 
 class TaskCreate(View):
     def post(self, request, project_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/create"
         payload = {
             "name": request.POST['name']
@@ -93,7 +93,7 @@ class TaskUpdate(View):
     template = 'frontend/task_form.html'
 
     def get_object(self, project_id, task_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
         users = requests.get(base_url + "api/users").json()
@@ -109,7 +109,7 @@ class TaskUpdate(View):
         return render(request, self.template, context)
 
     def post(self, request, project_id, task_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         payload = {
             "id": task_id,
@@ -127,7 +127,7 @@ class TaskList(View):
     template = 'frontend/task_list.html'
 
     def get_object(self, project_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task"
         response = requests.get(api_url).json()
         return response
@@ -145,7 +145,7 @@ class TaskDetail(View):
     template = 'frontend/task.html'
 
     def get_object(self, project_id, task_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
         return response
@@ -162,7 +162,7 @@ class TaskDetail(View):
 
 class SubTaskCreate(View):
     def post(self, request, project_id, task_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/create"
         payload = {
@@ -176,7 +176,7 @@ class SubTaskUpdate(View):
     template = 'frontend/subtask_form.html'
 
     def get_object(self, project_id, task_id, subtask_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/{subtask_id}"
         response = requests.get(api_url).json()
@@ -192,7 +192,7 @@ class SubTaskUpdate(View):
         return render(request, self.template, context)
 
     def post(self, request, project_id, task_id, subtask_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/{subtask_id}"
         payload = {
@@ -208,7 +208,7 @@ class SubTaskList(View):
     template = 'frontend/subtask_list.html'
 
     def get_object(self, project_id, task_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}/subtask"
         response = requests.get(api_url).json()
         return response
@@ -227,7 +227,7 @@ class SubTaskDetail(View):
     template = 'frontend/subtask.html'
 
     def get_object(self, project_id, task_id, subtask_id):
-        base_url = "http://127.0.0.1:8000/"
+        base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/{subtask_id}"
         response = requests.get(api_url).json()
