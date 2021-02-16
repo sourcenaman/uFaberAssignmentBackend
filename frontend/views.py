@@ -42,9 +42,12 @@ class ProjectUpdate(View):
             "duration": request.POST['duration'],
             # "image": request.FILES['image'],
         }
-        image_payload = {"image": request.FILES['image']}
+        try:
+            image_payload = {"image": request.FILES['image']}
 
-        requests.put(api_url, data=payload, files=image_payload)
+            requests.put(api_url, data=payload, files=image_payload)
+        except:
+            requests.put(api_url, data=payload)
         return redirect('ProjectDetail', project_id=project_id)
 
 
@@ -117,7 +120,9 @@ class TaskUpdate(View):
             "description": request.POST['description'],
             "start_date": request.POST['start_date'],
             "end_date": request.POST['end_date'],
-            "assigned_to": request.POST['assigned_to'],
+            "assigned_to": {
+                "id": request.POST['assigned_to'],
+            }
         }
         requests.put(api_url, data=payload)
         return redirect('TaskDetail', project_id=project_id, task_id=task_id)
@@ -157,6 +162,7 @@ class TaskDetail(View):
             'project_id': project_id,
 
         }
+        print(response)
         return render(request, self.template, context)
 
 
