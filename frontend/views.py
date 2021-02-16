@@ -19,14 +19,14 @@ class ProjectCreate(View):
 class ProjectUpdate(View):
     template = 'frontend/project_form.html'
 
-    def get_object(self, project_id):
+    def get_object(self, project_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}"
         response = requests.get(api_url).json()
         return response
 
     def get(self, request, project_id):
-        response = self.get_object(project_id)
+        response = self.get_object(project_id, request)
         context = {
             'project': response
         }
@@ -64,14 +64,14 @@ class ProjectList(View):
 class ProjectDetail(View):
     template = 'frontend/project.html'
 
-    def get_object(self, project_id):
+    def get_object(self, project_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}"
         response = requests.get(api_url).json()
         return response
 
     def get(self, request, project_id):
-        response = self.get_object(project_id)
+        response = self.get_object(project_id, request)
         context = {
             'project': response
         }
@@ -92,7 +92,7 @@ class TaskCreate(View):
 class TaskUpdate(View):
     template = 'frontend/task_form.html'
 
-    def get_object(self, project_id, task_id):
+    def get_object(self, project_id, task_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
@@ -100,7 +100,7 @@ class TaskUpdate(View):
         return response, users
 
     def get(self, request, project_id, task_id):
-        response, users = self.get_object(project_id, task_id)
+        response, users = self.get_object(project_id, task_id, request)
         context = {
             'task': response,
             'users': users,
@@ -126,14 +126,14 @@ class TaskUpdate(View):
 class TaskList(View):
     template = 'frontend/task_list.html'
 
-    def get_object(self, project_id):
+    def get_object(self, project_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task"
         response = requests.get(api_url).json()
         return response
 
     def get(self, request, project_id):
-        response = self.get_object(project_id)
+        response = self.get_object(project_id, request)
         context = {
             'tasks': response,
             'project_id': project_id
@@ -144,14 +144,14 @@ class TaskList(View):
 class TaskDetail(View):
     template = 'frontend/task.html'
 
-    def get_object(self, project_id, task_id):
+    def get_object(self, project_id, task_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
         return response
 
     def get(self, request, project_id, task_id):
-        response = self.get_object(project_id, task_id)
+        response = self.get_object(project_id, task_id, request)
         context = {
             'task': response,
             'project_id': project_id,
@@ -175,7 +175,7 @@ class SubTaskCreate(View):
 class SubTaskUpdate(View):
     template = 'frontend/subtask_form.html'
 
-    def get_object(self, project_id, task_id, subtask_id):
+    def get_object(self, project_id, task_id, subtask_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/{subtask_id}"
@@ -183,7 +183,7 @@ class SubTaskUpdate(View):
         return response
 
     def get(self, request, project_id, task_id, subtask_id):
-        response = self.get_object(project_id, task_id, subtask_id)
+        response = self.get_object(project_id, task_id, subtask_id, request)
         context = {
             'subtask': response,
             'task_id': task_id,
@@ -207,14 +207,14 @@ class SubTaskUpdate(View):
 class SubTaskList(View):
     template = 'frontend/subtask_list.html'
 
-    def get_object(self, project_id, task_id):
+    def get_object(self, project_id, task_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}/subtask"
         response = requests.get(api_url).json()
         return response
 
     def get(self, request, project_id, task_id):
-        response = self.get_object(project_id, task_id)
+        response = self.get_object(project_id, task_id, request)
         context = {
             'subtasks': response,
             'project_id': project_id,
@@ -226,7 +226,7 @@ class SubTaskList(View):
 class SubTaskDetail(View):
     template = 'frontend/subtask.html'
 
-    def get_object(self, project_id, task_id, subtask_id):
+    def get_object(self, project_id, task_id, subtask_id, request):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + \
             f"api/project/{project_id}/task/{task_id}/subtask/{subtask_id}"
@@ -234,7 +234,7 @@ class SubTaskDetail(View):
         return response
 
     def get(self, request, project_id, task_id, subtask_id):
-        response = self.get_object(project_id, task_id, subtask_id)
+        response = self.get_object(project_id, task_id, subtask_id, request)
         context = {
             'subtask': response,
             'project_id': project_id,
