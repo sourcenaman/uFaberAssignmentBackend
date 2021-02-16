@@ -97,10 +97,11 @@
       }
       const csrftoken = getCookie('csrftoken');
 
+      base_url = window.location.origin;
 
       function deleteProject(project_id) {
           $.ajax({
-              url: "http://127.0.0.1:8000/api/project/" + project_id,
+              url: base_url + "/api/project/" + project_id,
               headers: {'X-CSRFToken': csrftoken},
               type: "DELETE",
               contentType: "application/json",
@@ -113,7 +114,7 @@
 
       function deleteTask(project_id, task_id) {
           $.ajax({
-              url: "http://127.0.0.1:8000/api/project/" + project_id + "/task/" + task_id,
+              url: base_url + "/api/project/" + project_id + "/task/" + task_id,
               headers: {'X-CSRFToken': csrftoken},
               type: "DELETE",
               contentType: "application/json",
@@ -126,7 +127,7 @@
 
       function deleteSubtask(project_id, task_id, subtask_id) {
           $.ajax({
-              url: "http://127.0.0.1:8000/api/project/" + project_id + "/task/" + task_id + "/subtask/" + subtask_id,
+              url: base_url + "/api/project/" + project_id + "/task/" + task_id + "/subtask/" + subtask_id,
               headers: {'X-CSRFToken': csrftoken},
               type: "DELETE",
               contentType: "application/json",
