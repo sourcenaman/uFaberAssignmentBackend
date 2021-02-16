@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <form id="update-form" method="POST" enctype="multipart/form-data" action="{% url 'ProjectUpdate' project.id %}">
+    {% csrf_token %}
+    <div class="form-group mb-3">
+      <label class="mb-1">Project Name</label>
+      <input type="text" class="form-control" name="name" value="{{ project.name }}" placeholder="Enter name" />
+    </div>
+    <div class="form-group mb-3">
+      <label class="mb-1">Project Description</label>
+      <textarea class="form-control" name="description" maxlength="400" placeholder="Enter description" rows="3">{{ project.description }}</textarea>
+    </div>
+    <div class="form-group mb-3">
+      <label class="mb-1">Project Duration</label>
+      <input type="number" class="form-control" name="duration" value="{{ project.duration }}" placeholder="Enter duration" />
+    </div>
+    <div class="form-group mb-3">
+      <label class="mb-1">Avatar:</label>
+      <input type="file" class="form-control-file" name="image" accept="image/*" />
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Update Project</button>
+  </form>
+</div>
+{% endblock %}

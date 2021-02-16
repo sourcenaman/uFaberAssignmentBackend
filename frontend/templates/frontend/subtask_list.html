@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5" id="main-container">
+<form id="add-form" method="POST" action="{% url 'SubTaskCreate' project_id task_id %}">
+  {% csrf_token %}
+  <div class="form-group mb-2">
+    <input type="text" class="form-control" id="" name="name" placeholder="Subtask Name">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Add Subtask</button>
+</form>
+</form>
+<div class="card">
+  <div class="card-header"> <h3>Subtask List</h3> </div>
+  <ul class="list-group list-group-flush">
+    {% if not subtasks %}
+      <li class="list-group-item">None</li>
+    {% endif %}
+    {% for subtask in subtasks %}
+        <a class="btn btn-light" href="{% url 'SubTaskDetail' project_id task_id subtask.id %}"><li class="list-group-item">{{ subtask.name }}</li></a>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+{% endblock %}

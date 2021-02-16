@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container col mt-5">
+  <div class="row">
+  <div class="col-6" id="image-container">
+    <img class="img-responsive" src="{{ project.image }}" alt="project avatar" />
+  </div>
+  <div class="col" style="margin: auto;">
+    <h2>{{project.name}}</h2>
+  </div>
+  </div>
+  <hr />
+  <div class="card card-body">
+    <table class="table table-sm">
+      <tr>
+        <th>Description</th>
+        <th>Duration</th>
+        <th>View Tasks</th>
+        <th>Update</th>
+        <th>Remove</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>{{ project.description }}</td>
+          <td>{% if project.duration %}{{ project.duration }} hrs {% else %} - {% endif %}</td>
+          <td><a href="{% url 'TaskList' project.id %}" class="btn btn-sm btn-outline-info">View</a></td>
+          <td><a href="{% url 'ProjectUpdate' project.id %}" class="btn btn-sm btn-outline-warning">Update</a></td>
+          <td><button onclick="deleteProject({{project.id}})" class="btn btn-sm btn-outline-danger">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

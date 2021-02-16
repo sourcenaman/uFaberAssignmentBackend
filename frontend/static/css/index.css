@@ -1,0 +1,41 @@
+#main-container{
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+}
+
+#add-form{
+    display: inline-flex;
+}
+
+#add-form div{
+    margin-right: 10px;
+}
+
+th, td{
+    text-align: center;
+}
+
+#update-form{
+    justify-content: center;
+    margin: auto;
+}
+
+#image-container{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+}
+
+#image-container img{
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+}
+
+.row{
+    margin: auto;
+}

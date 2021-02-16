@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container col mt-5">
+  <h2>{{ subtask.name }}</h2>
+  <hr />
+  <div class="card card-body">
+    <table class="table table-sm">
+      <tr>
+        <th>Description</th>
+        <th>Update</th>
+        <th>Remove</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>{{ subtask.description }}</td>
+          <td><a href="{% url 'SubTaskUpdate' project_id task_id subtask.id %}" class="btn btn-sm btn-outline-warning">Update</a></td>
+          <td
+            ><button
+              onclick="deleteSubtask({{project_id}}, {{task_id}}, {{subtask.id}})"
+              class="btn btn-sm btn-outline-danger"
+              >Remove</button
+            ></td
+          >
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
