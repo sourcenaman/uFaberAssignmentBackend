@@ -109,18 +109,24 @@ class TaskUpdate(View):
             'users': users,
             'project_id': project_id,
         }
+        print(response)
         return render(request, self.template, context)
 
     def post(self, request, project_id, task_id):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
-        print(api_url)
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        if request.POST['start_date'] == 'None':
+            start_date = None
+        if request.POST['end_date'] == 'None':
+            end_date = None
         payload = {
             "id": task_id,
             "name": request.POST['name'],
             "description": request.POST['description'],
-            "start_date": request.POST['start_date'],
-            "end_date": request.POST['end_date']
+            "start_date": start_date,
+            "end_date": end_date
             # "assigned_to": request.POST['assigned_to']
         }
 
