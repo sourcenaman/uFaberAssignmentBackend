@@ -163,6 +163,7 @@ class TaskDetail(View):
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
         users = requests.get(base_url + "api/users").json()
+        assigned_to = ''
         for user in users:
             if response['assigned_to'] == user['id']:
                 assigned_to = user
