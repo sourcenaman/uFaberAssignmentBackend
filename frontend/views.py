@@ -5,6 +5,10 @@ import requests
 # Create your views here.
 
 
+def index(request):
+    return redirect('ProjectList')
+
+
 class ProjectCreate(View):
     def post(self, request):
         base_url = request.build_absolute_uri('/')
