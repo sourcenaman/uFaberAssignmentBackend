@@ -35,7 +35,7 @@ class Task(models.Model):
 class SubTask(models.Model):
     task = models.ForeignKey(
         Task, related_name="subtasks", on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200)
     description = models.TextField(max_length=400, blank=True, null=True)
     date_created = models.DateField(auto_now_add=True)
 

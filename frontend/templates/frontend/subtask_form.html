@@ -4,7 +4,7 @@
     {% csrf_token %}
     <div class="form-group mb-3">
       <label class="mb-1">Subtask Name</label>
-      <input type="text" class="form-control" name="name" value="{{ subtask.name }}" placeholder="Enter name" />
+      <input type="text" class="form-control" name="name" value="{{ subtask.name }}" required placeholder="Enter name" />
     </div>
     <div class="form-group mb-3">
       <label class="mb-1">Subtask Description</label>

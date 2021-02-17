@@ -16,18 +16,18 @@ class SubTaskSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    subtask = SubTaskSerializer(read_only=True)
-    assigned_to = UserSerializer(read_only=True)
+    # subtasks = SubTaskSerializer(many=True, read_only=True)
+    # assigned_to = UserSerializer(read_only=False)
 
     class Meta:
         model = Task
         fields = ['id', 'name', 'description',
-                  'start_date', 'end_date', 'subtask', 'assigned_to']
+                  'start_date', 'end_date']
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    tasks = TaskSerializer(many=True, read_only=True)
+    # tasks = TaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
-        fields = ["id", "name", "description", "duration", "image", "tasks"]
+        fields = ["id", "name", "description", "duration", "image"]

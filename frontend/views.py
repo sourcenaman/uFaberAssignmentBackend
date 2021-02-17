@@ -114,16 +114,16 @@ class TaskUpdate(View):
     def post(self, request, project_id, task_id):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
+        print(api_url)
         payload = {
             "id": task_id,
             "name": request.POST['name'],
             "description": request.POST['description'],
             "start_date": request.POST['start_date'],
-            "end_date": request.POST['end_date'],
-            "assigned_to": {
-                "id": request.POST['assigned_to'],
-            }
+            "end_date": request.POST['end_date']
+            # "assigned_to": request.POST['assigned_to']
         }
+
         requests.put(api_url, data=payload)
         return redirect('TaskDetail', project_id=project_id, task_id=task_id)
 
@@ -162,7 +162,6 @@ class TaskDetail(View):
             'project_id': project_id,
 
         }
-        print(response)
         return render(request, self.template, context)
 
 

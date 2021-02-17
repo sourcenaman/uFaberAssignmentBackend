@@ -3,7 +3,7 @@
 <form id="add-form" method="POST" action="{% url 'TaskCreate' project_id %}">
   {% csrf_token %}
   <div class="form-group mb-2">
-    <input type="text" class="form-control" id="" name="name" placeholder="Task Name">
+    <input type="text" class="form-control" id="" name="name" required placeholder="Task Name">
   </div>
   <button type="submit" class="btn btn-primary mb-2">Add Task</button>
 </form>
