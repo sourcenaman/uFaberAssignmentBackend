@@ -44,7 +44,6 @@ class ProjectUpdate(View):
             "name": request.POST['name'],
             "description": request.POST['description'],
             "duration": request.POST['duration'],
-            # "image": request.FILES['image'],
         }
         try:
             image_payload = {"image": request.FILES['image']}
@@ -130,8 +129,8 @@ class TaskUpdate(View):
             "name": request.POST['name'],
             "description": request.POST['description'],
             "start_date": start_date,
-            "end_date": end_date
-            # "assigned_to": request.POST['assigned_to']
+            "end_date": end_date,
+            "assigned_to": request.POST['assigned_to']
         }
 
         requests.put(api_url, data=payload)
@@ -163,13 +162,18 @@ class TaskDetail(View):
         base_url = request.build_absolute_uri('/')
         api_url = base_url + f"api/project/{project_id}/task/{task_id}"
         response = requests.get(api_url).json()
-        return response
+        users = requests.get(base_url + "api/users").json()
+        for user in users:
+            if response['assigned_to'] == user['id']:
+                assigned_to = user
+        return response, assigned_to
 
     def get(self, request, project_id, task_id):
-        response = self.get_object(project_id, task_id, request)
+        response, assigned_to = self.get_object(project_id, task_id, request)
         context = {
             'task': response,
             'project_id': project_id,
+            'assigned_to': assigned_to,
 
         }
         return render(request, self.template, context)

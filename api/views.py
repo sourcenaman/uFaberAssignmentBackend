@@ -67,7 +67,6 @@ class TaskCreate(APIView):
 
     def post(self, request, project_id):
         task = self.get_object(project_id)
-        print(request.data)
         serializer = TaskSerializer(task, data=request.data)
         if serializer.is_valid():
             serializer.save()
