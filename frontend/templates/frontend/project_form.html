@@ -19,6 +19,7 @@
       <input type="file" class="form-control-file" name="image" accept="image/*" />
     </div>
     <button type="submit" class="btn btn-primary mb-2">Update Project</button>
+    <a href="{% url 'ProjectDetail' project.id %}" class="btn btn-secondary mb-2">Cancel</a>
   </form>
 </div>
 {% endblock %}

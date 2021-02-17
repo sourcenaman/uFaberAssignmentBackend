@@ -11,6 +11,7 @@
       <textarea class="form-control" name="description" maxlength="400" placeholder="Enter description" rows="3">{{ subtask.description }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary mb-2">Update Project</button>
+    <a href="{% url 'SubTaskDetail' project_id task_id subtask.id %}" class="btn btn-secondary mb-2">Cancel</a>
   </form>
 </div>
 {% endblock %}
